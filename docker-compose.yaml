@@ -1,0 +1,27 @@
+services:
+  vein:
+    build:
+      context: ./server
+      args:
+        - HOSTUSERID=${HOSTUSERID:-1000}
+        - HOSTGROUPID=${HOSTGROUPID:-1000}
+    env_file:
+      - vein_server.env # Create a link to your vein_server.env: ln -s vein_server.env .env
+    tty: true
+    stdin_open: true
+    ports:
+      - 7777:7777/udp
+      - 27015:27015/udp
+    networks:
+      - vein
+    volumes:
+      - "./vein_server_data:/opt/steamapp/vein-server/Vein/Saved"
+    restart: unless-stopped
+
+networks:
+  vein:
+    enable_ipv6: false
+    driver: bridge
+
+volumes:
+  vein_server_data:
