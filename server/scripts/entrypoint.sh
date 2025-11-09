@@ -40,6 +40,7 @@ MaxPlayers=${MAX_PLAYERS:-16}
 
 [/Script/Vein.VeinGameSession]
 ServerName="${SERVER_NAME:-Vein Docker Server}"
+ServerDescription="${SERVER_DESCRIPTION}"
 BindAddr=${SERVER_BIND_ADDR:-0.0.0.0}
 HeartbeatInterval=${HEARTBEAT_INTERVAL:-5.0}
 EOM
