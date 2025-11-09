@@ -1,2 +1,4 @@
 vein_server.env
 vein_server_data/*
+!vein_server_data/
+!vein_server_data/.gitkeep
