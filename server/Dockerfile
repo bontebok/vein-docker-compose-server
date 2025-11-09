@@ -2,12 +2,12 @@ FROM	debian:trixie-slim AS build
 
 ARG	HOSTUSERID=1000 \
 	HOSTGROUPID=1000 \
-        USER=steam
+	USER=steam
 
 ENV	STEAMAPPID=2131400 \
 	STEAMCMDDIR=/opt/steamcmd \
-        STEAMAPPDIR=/opt/steamapp \
-        SCRIPTDIR=/opt/scripts \
+	STEAMAPPDIR=/opt/steamapp \
+	SCRIPTDIR=/opt/scripts \
 	STEAMLOGIN=anonymous \
 	STEAMCMDURL="https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" \
 	HOSTUSERID=${HOSTUSERID} \
@@ -21,7 +21,7 @@ ENV	CONFIG_PATH=${SERVER_PATH}/Vein/Saved/Config/${CONFIG_DIR_NAME}
 
 # Update and install Vein dependencies
 RUN	set -x && \
-        dpkg --add-architecture i386 && \
+	dpkg --add-architecture i386 && \
 	apt update -y && apt dist-upgrade -y && \
 	apt install --no-install-recommends -y \
 		lib32gcc-s1 libc6-dev ca-certificates adduser tar gzip \
