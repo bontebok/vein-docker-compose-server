@@ -25,7 +25,7 @@ RUN	set -x && \
 	apt update -y && apt dist-upgrade -y && \
 	apt install --no-install-recommends -y \
 		lib32gcc-s1 libc6-dev ca-certificates adduser tar gzip \
-		curl libatomic1 libasound2-dev libpulse-dev
+		curl crudini libatomic1 libasound2-dev libpulse-dev
 
 # Clean up
 RUN	apt-get -y clean && rm -rf /var/lib/{apt,dpkg,cache}
