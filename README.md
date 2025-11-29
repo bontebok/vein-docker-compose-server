@@ -34,7 +34,7 @@ cp vein_server.env.sample vein_server.env
 3. Edit the vein_server.env file and customize it. Use your favorite editor. Remember to set a password if you want to password protect your server.
 
 ```
-ano vein_server.env
+nano vein_server.env
 ```
 
 4. Build and start the container.
