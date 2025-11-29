@@ -63,37 +63,44 @@ Every server setting is controlled by an environment variable with this pattern:
 <FILE PREFIX><SECTION PREFIX><ENCODED_KEY>=<value>
 ```
 
-### File prefixes
+### Config File / Section variable prefixes
 
-Start the variable by naming it with the appropriate prefix using the table below.
-
-| Prefix    | Target File  |
-| --------- | ------------ |
-| `GAME_`   | `Game.ini`   |
-| `ENGINE_` | `Engine.ini` |
-
-### Section prefixes
-
-Then, append the section prefix for the section the setting is found in the respective INI file.
+Start the variable by naming it with the appropriate prefix using the table below based on the configuration file and configuration section.
 
 | File       | Section                        | Prefix                         |
 | ---------- | ------------------------------ | ------------------------------ |
-| Game.ini   | `/Script/Engine.GameSession`   | `GAME_GAMESESSION_`            |
-| Game.ini   | `/Script/Vein.VeinGameSession` | `GAME_VEIN_GAMESESSION_`       |
-| Game.ini   | `OnlineSubsystemSteam`         | `GAME_ONLINE_SUBSYSTEM_STEAM_` |
-| Game.ini   | `URL`                          | `GAME_URL_`                    |
-| Game.ini   | `/Script/Vein.ServerSettings`  | `GAME_SERVERSETTINGS_`         |
-| Engine.ini | `Core.Log`                     | `ENGINE_CORE_LOG_`             |
-| Engine.ini | `ConsoleVariables`             | `ENGINE_CONSOLEVARIABLES_`     |
+| Game.ini   | `[/Script/Engine.GameSession]`   | `GAME_GAMESESSION_`            |
+| Game.ini   | `[/Script/Vein.VeinGameSession]` | `GAME_VEIN_GAMESESSION_`       |
+| Game.ini   | `[OnlineSubsystemSteam]`         | `GAME_ONLINE_SUBSYSTEM_STEAM_` |
+| Game.ini   | `[URL]`                          | `GAME_URL_`                    |
+| Game.ini   | `[/Script/Vein.ServerSettings]`  | `GAME_SERVERSETTINGS_`         |
+| Engine.ini | `[Core.Log]`                     | `ENGINE_CORE_LOG_`             |
+| Engine.ini | `[ConsoleVariables]`             | `ENGINE_CONSOLEVARIABLES_`     |
 
 ### Key name encoding
 
-Environment variable key names cannot contain certain characters, so the following substitution rules are used:
+Next, append the name of the variable found in the config file. Environment variable key names cannot contain certain characters, so the following substitution rules are used:
 
 | Actual Character | Encoded As     |
 | ---------------- | -------------- |
 | `.`              | `_DOT_`        |
 | `_`              | `_UNDERSCORE_` |
+
+### Environment variable examples
+
+---
+
+Let's say we want to set the config value `Port` to `777` found in the `[URL]` section of the `Game.ini` file. The environment variable entry would be:
+
+```
+GAME_URL_Port=7777
+```
+
+To disable PvP, we need to set the config value `vein.PvP` to `0` found in the `[ConsoleVariable]` section of the `Engine.ini` file. The period should be replaced with a `_DOT_` as per the encoding table above. The environment variable entry would be:
+
+```
+ENGINE_CONSOLEVARIABLES_vein_DOT_PvP=0
+```
 
 
 See the vein_server.env.sample file for examples on how to name the environment variables for each configuration file and section.
